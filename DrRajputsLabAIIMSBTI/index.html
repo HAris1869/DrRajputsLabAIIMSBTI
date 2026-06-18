@@ -12,22 +12,24 @@
   <meta property="og:url" content="https://DrRajputsLabAIIMSBTI.in" />
   <link rel="canonical" href="https://DrRajputsLabAIIMSBTI.in" />
 
+  <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/animations.css" />
 
+  <!-- Layout Stabilization Styles (Fixes the deformation layout-wide) -->
   <style>
-    /* Global fixes for box sizing and text overflow */
     *, *::before, *::after { box-sizing: border-box; }
     img { max-width: 100%; height: auto; }
     p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; }
 
-    /* Container Constraints */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -35,7 +37,6 @@
       padding: 0 20px;
     }
 
-    /* Navbar Fixes */
     .navbar .container {
       display: flex;
       flex-wrap: wrap;
@@ -43,6 +44,7 @@
       align-items: center;
       gap: 15px;
     }
+    
     .nav-links {
       display: flex;
       flex-wrap: wrap;
@@ -60,12 +62,13 @@
       align-items: stretch;
     }
 
-    /* Team Card Fixes (Prevents the cut-off / flat card issue) */
+    /* Team Card Fixes (Fixes the overlapping / flat card layout bug) */
     .member-card {
       perspective: 1000px;
-      min-height: 350px; /* Crucial for flip cards to not collapse */
+      min-height: 380px; 
       width: 100%;
     }
+    
     .member-card-inner {
       position: relative;
       width: 100%;
@@ -73,12 +76,15 @@
       text-align: center;
       transition: transform 0.6s;
       transform-style: preserve-3d;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       border-radius: 12px;
     }
-    .member-card:hover .member-card-inner {
+    
+    .member-card:hover .member-card-inner,
+    .member-card:focus .member-card-inner {
       transform: rotateY(180deg);
     }
+    
     .member-front, .member-back {
       position: absolute;
       width: 100%;
@@ -86,7 +92,7 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -94,22 +100,26 @@
       background: #fff;
       overflow: hidden;
     }
+    
     .member-back {
       transform: rotateY(180deg);
-      background: #1a237e; /* Dark theme for back of card */
+      background: #1a237e; 
       color: white;
     }
+    
     .member-back-bio {
       font-size: 0.9rem;
-      line-height: 1.4;
+      line-height: 1.5;
       margin: 15px 0;
     }
+    
     .member-interest-tags {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
     }
+    
     .member-interest-tag {
       background: rgba(255,255,255,0.2);
       padding: 4px 8px;
@@ -117,45 +127,98 @@
       font-size: 0.75rem;
     }
 
-    /* Publication Fixes */
+    /* Publication Clean list View */
     .pub-list {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
+    
     .pub-item {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.5rem;
       background: #f8f9fa;
-      padding: 20px;
+      padding: 24px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
+    .pub-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
     .pub-year-badge {
       background: #1a237e;
       color: white;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 4px;
       font-weight: bold;
+      font-size: 0.95rem;
+      min-width: 70px;
+      text-align: center;
     }
+    
     .pub-content {
       flex: 1;
     }
+
+    .pub-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .pub-authors {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .pub-journal {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .pub-doi-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #e8eaf6;
+      color: #1a237e;
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    .pub-doi-link:hover {
+      background: #1a237e;
+      color: #fff;
+    }
     
-    /* Responsive Adjustments */
     @media (max-width: 768px) {
       .pub-item {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
       }
-      .nav-links {
-        display: none; /* Add JS to toggle this for mobile */
+      .pub-doi-link {
+        align-self: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- ── Page Loader ── -->
   <div id="page-loader" role="status" aria-label="Loading website">
     <div class="loader-logo">
       <span>🧬</span> Stem cell therapy & Cancer Biology Lab<br />
@@ -166,10 +229,15 @@
     </div>
   </div>
 
+  <!-- ── Scroll Progress Bar ── -->
   <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
 
+  <!-- ══════════════════════════════
+       NAVIGATION
+  ══════════════════════════════ -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
+      <!-- Brand -->
       <a href="#home" class="nav-brand" aria-label="Cancer Biology Lab home">
         <div class="nav-logo" aria-hidden="true">🧬</div>
         <div class="nav-title">
@@ -178,6 +246,7 @@
         </div>
       </a>
 
+      <!-- Nav Links -->
       <ul class="nav-links" id="nav-links" role="list">
         <li><a href="#home" class="active" id="nav-home">Home</a></li>
         <li><a href="#research" id="nav-research">Research</a></li>
@@ -190,10 +259,12 @@
       </ul>
 
       <div class="nav-actions">
+        <!-- Dark Mode Toggle -->
         <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
           <span id="dark-icon">🌙</span>
         </button>
 
+        <!-- Hamburger -->
         <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -201,6 +272,9 @@
     </div>
   </nav>
 
+  <!-- ══════════════════════════════
+       HERO SECTION
+  ══════════════════════════════ -->
   <section class="hero" id="home" aria-label="Hero section">
     <div class="hero-bg"></div>
     <div class="hero-bg-image" role="img" aria-label="Stem cell & Cancer biology laboratory background"></div>
@@ -208,6 +282,7 @@
     <div class="hero-overlay" aria-hidden="true"></div>
 
     <div class="container">
+      <!-- Left Content -->
       <div class="hero-content">
         <div class="hero-badge" role="status">
           Active Research Lab · Est. 2019
@@ -233,9 +308,9 @@
             📄 Publications
           </a>
         </div>
-        
-        </div>
+      </div>
 
+      <!-- Right Visual -->
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-dna-card">
           <span class="hero-dna-icon">🧬</span>
@@ -254,12 +329,16 @@
       </div>
     </div>
 
+    <!-- Scroll Indicator -->
     <a href="#research" class="scroll-indicator" aria-label="Scroll to research section">
       <span>Scroll</span>
       <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
     </a>
   </section>
 
+  <!-- ══════════════════════════════
+       RESEARCH SECTION
+  ══════════════════════════════ -->
   <section class="section research" id="research" aria-labelledby="research-heading">
     <div class="container">
       <div class="section-header">
@@ -267,10 +346,11 @@
         <h2 class="section-title reveal" id="research-heading">Research Projects</h2>
         <p class="section-subtitle reveal delay-1">
           Our lab investigates molecular mechanisms underlying cancer progression,
-          metasthesis, and novel therapeutic strategies using advanced cellular and molecular techniques.
+          metastasis, and novel therapeutic strategies using advanced cellular and molecular techniques.
         </p>
       </div>
 
+      <!-- Research Pathway Diagram -->
       <div class="pathway-diagram reveal" aria-label="Research pathway from sample to discovery">
         <div class="pathway-node">
           <div class="pathway-circle glow-animate" title="Patient Samples">🏥</div>
@@ -300,6 +380,9 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════
+       TEAM SECTION
+  ══════════════════════════════ -->
   <section class="section team" id="team" aria-labelledby="team-heading">
     <div class="container">
       <div class="section-header text-center">
@@ -310,9 +393,10 @@
         </p>
       </div>
 
+      <!-- PI Card -->
       <article class="pi-card reveal" aria-label="Principal Investigator profile">
         <div class="pi-card-image">
-          <img src="assets/images/pi_profile.png" alt="Dr. Sanjay Kumar, Principal Investigator" loading="eager" />
+          <img src="assets/images/pi_profile.png" alt="Dr. Sanjay Kumar, Principal Investigator, Stem cell therapy & Cancer Biology Lab, AIIMS Bathinda" loading="eager" />
           <div class="pi-card-image-overlay" aria-hidden="true"></div>
         </div>
         <div class="pi-card-content">
@@ -320,7 +404,7 @@
           <h3>Dr. Sanjay Kumar</h3>
           <p class="pi-dept"> · Additional Professor<br />Department of Biochemistry, AIIMS Bathinda</p>
           <p>
-            Dr. Sanjay Kumar leads the Stem Cell Therapy & Cancer Biology Laboratory, focusing on molecular mechanisms of cancer progression, PDE5 inhibitor-based therapeutics, and liquid biopsy diagnostics.
+            Dr. Sanjay Kumar leads the Stem Cell Therapy & Cancer Biology Laboratory, focusing on molecular mechanisms of cancer progression, PDE5 inhibitor-based therapeutics, and liquid biopsy diagnostics. His translational research bridges fundamental molecular biology with clinical oncology to identify novel cancer biomarkers and therapeutic targets.
           </p>
           <div class="pi-badges">
             <span class="pi-badge">🧬 Cancer Biology</span>
@@ -339,8 +423,10 @@
         </div>
       </article>
 
+      <!-- Team Members Grid -->
       <div class="team-grid" role="list" aria-label="Lab team members">
-        <article class="member-card reveal delay-1" role="listitem" tabindex="0">
+        <!-- Member 1 -->
+        <article class="member-card reveal delay-1" role="listitem" tabindex="0" aria-label="Varsha Yadav, PhD Scholar">
           <div class="member-card-inner">
             <div class="member-front">
               <div class="member-avatar" aria-hidden="true">👩‍🔬</div>
@@ -353,11 +439,16 @@
               <div class="member-back-name">Varsha Yadav</div>
               <div class="member-back-role">PhD Scholar</div>
               <p class="member-back-bio">To evoke Transplanted Stem cell Survival against Ischemic/Reperfusion injury through Pharmacological Preconditioning with Phosphodiesterase Inhibitors.</p>
+              <div class="member-interest-tags">
+                <span class="member-interest-tag">Stem Cells</span>
+                <span class="member-interest-tag">Preconditioning</span>
+              </div>
             </div>
           </div>
         </article>
 
-        <article class="member-card reveal delay-2" role="listitem" tabindex="0">
+        <!-- Member 2 -->
+        <article class="member-card reveal delay-2" role="listitem" tabindex="0" aria-label="Anshika Sethi, Phd Scholar">
           <div class="member-card-inner">
             <div class="member-front">
               <div class="member-avatar" aria-hidden="true">👨‍🔬</div>
@@ -379,7 +470,8 @@
           </div>
         </article>
 
-        <article class="member-card reveal delay-3" role="listitem" tabindex="0">
+        <!-- Member 3 -->
+        <article class="member-card reveal delay-3" role="listitem" tabindex="0" aria-label="Namrta Sharma, Junior Research Fellow">
           <div class="member-card-inner">
             <div class="member-front">
               <div class="member-avatar" aria-hidden="true">👩‍💻</div>
@@ -391,7 +483,7 @@
             <div class="member-back">
               <div class="member-back-name">Namrta Sharma</div>
               <div class="member-back-role">Junior Research Fellow</div>
-              <p class="member-back-bio">Expression profiling of MicroRNA in blood samples from various stages of cancer patients as novel diagnostic and prognostic biomarker.</p>
+              <p class="member-back-bio">Expression profiling of MicroRNA in blood samples from various stages of cancer patients as novel diagnostic and prognostic biomarker for early detection of Cancer.</p>
               <div class="member-interest-tags">
                 <span class="member-interest-tag">miRNA</span>
                 <span class="member-interest-tag">BRCA</span>
@@ -401,7 +493,8 @@
           </div>
         </article>
 
-        <article class="member-card reveal delay-4" role="listitem" tabindex="0">
+        <!-- Member 4 -->
+        <article class="member-card reveal delay-4" role="listitem" tabindex="0" aria-label="Haris Bashir, Msc Project Student">
           <div class="member-card-inner">
             <div class="member-front">
               <div class="member-avatar" aria-hidden="true">👨‍🎓</div>
@@ -426,63 +519,140 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════
+       PUBLICATIONS SECTION
+  ══════════════════════════════ -->
   <section class="section publications" id="publications" aria-labelledby="publications-heading">
     <div class="container">
       <div class="section-header">
         <div class="section-label" aria-hidden="true">Peer-Reviewed Work</div>
         <h2 class="section-title reveal" id="publications-heading">Publications</h2>
         <p class="section-subtitle reveal delay-1">
-          Our research contributes to the scientific community through peer-reviewed publications in high-impact journals.
+          Our research contributes to the scientific community through peer-reviewed publications in high-impact journals spanning stem cell therapy, cancer biology, molecular oncology, and clinical biochemistry.
         </p>
       </div>
 
+      <!-- Filter Buttons -->
       <div class="pub-filters reveal" role="group" aria-label="Filter publications by year">
         <button class="pub-filter-btn active" data-filter="all" id="filter-all">All Publications</button>
       </div>
 
+      <!-- Publications List (ALL RESTORED) -->
       <div class="pub-list" id="pub-list" role="list" aria-label="Publications list">
         
-        <article class="pub-item reveal delay-1" data-year="2026" role="listitem">
+        <!-- Pub 1 -->
+        <article class="pub-item reveal delay-1" data-year="2026" data-topic="HIF-1" role="listitem">
           <div class="pub-year-badge" aria-hidden="true">2026</div>
           <div class="pub-content">
             <div class="pub-title">Unraveling the mystery of hypoxia-induced miRNAs in breast cancer: A molecular cross-talk driving tumor progression and therapy resistance</div>
             <div class="pub-authors">Namrta Sharma, Varsha Yadav, Saket Sinha, Laxmi Kumari, Anshika Sethi, Sapna Marcus, Mahendra Pratap Singh, Sharanjot Kaur, Nikhil Garg, Akhilesh Pathak, Balachandar Vellingiri, Sanjay Kumar</div>
             <div class="pub-journal"><strong>Molecular Aspects of Medicine</strong> · 2026 · DOI: https://doi.org/10.1016/j.mam.2026.101486</div>
           </div>
-          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0098299726000427" target="_blank" rel="noopener" class="pub-doi-link">🔗 DOI</a>
+          <a href="https://www.sciencedirect.com/science/article/abs/pii/S0098299726000427" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
         </article>
 
-        <article class="pub-item reveal delay-1" data-year="2019" role="listitem">
+        <!-- Pub 2 -->
+        <article class="pub-item reveal delay-1" data-year="2019" data-topic="PDE5" role="listitem">
           <div class="pub-year-badge" aria-hidden="true">2019</div>
           <div class="pub-content">
             <div class="pub-title">Pharmacological Preconditioning with Phosphodiesterase Inhibitor: An answer to Transplant Stem Cell Survival against Ischemic Injury through JAK/STAT signaling</div>
             <div class="pub-authors">Manju Yadav, Pooja Kumari, Varsha Yadav, and Sanjay Kumar</div>
             <div class="pub-journal"><strong>Heart Failure Reviews</strong> · 2019 · DOI: 10.1007/s10741-019-09822-0</div>
           </div>
-          <a href="https://www.researchgate.net/publication/369825363..." target="_blank" rel="noopener" class="pub-doi-link">🔗 DOI</a>
+          <a href="https://www.researchgate.net/publication/369825363_Pharmacological_preconditioning_with_phosphodiestrase_inhibitor_an_answer_to_stem_cell_survival_against_ischemic_injury_through_JAKSTAT_signaling" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
         </article>
 
-        <article class="pub-item reveal delay-2" data-year="2015" role="listitem">
+        <!-- Pub 3 -->
+        <article class="pub-item reveal delay-2" data-year="2015" data-topic="Tadalafil" role="listitem">
           <div class="pub-year-badge" aria-hidden="true">2015</div>
           <div class="pub-content">
             <div class="pub-title">Tadalafil, a Phosphodiesterase Inhibitor Protects Stem Cells over Longer Period against Ischemic-Reperfusion Injury through STAT3/PKG-I Signaling</div>
             <div class="pub-authors">Sanjay Kumar and Muhammad Ashraf</div>
-            <div class="pub-journal"><strong>Sage Journals</strong> · 2015 · DOI: 10.1089/scd.2014.0288</div>
+            <div class="pub-journal"><strong>Sage Journals</strong> · 2015 · DOI: doi.org/10.1089/scd.2014.0288</div>
           </div>
-          <a href="https://doi.org/10.1089/scd.2014.0288" target="_blank" rel="noopener" class="pub-doi-link">🔗 DOI</a>
+          <a href="https://doi.org/10.1089/scd.2014.0288" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
         </article>
 
-        </div>
+        <!-- Pub 4 -->
+        <article class="pub-item reveal delay-3" data-year="2016" data-topic="therapeutics" role="listitem">
+          <div class="pub-year-badge" aria-hidden="true">2016</div>
+          <div class="pub-content">
+            <div class="pub-title">Hypoxia Inhibits Mescenchymal Stem Cell Proliferation through HIF1α Dependent Regulation of P27.</div>
+            <div class="pub-authors">Sanjay Kumar and Meenal Vaidya</div>
+            <div class="pub-journal"><strong>Mol Cell Biochem</strong> · 2016 · DOI: 10.1007/s11010-016-2674-5.</div>
+          </div>
+          <a href="https://link.springer.com/content/pdf/10.1007/s11010-016-2674-5.pdf" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
+        </article>
+
+        <!-- Pub 5 -->
+        <article class="pub-item reveal delay-4" data-year="2014" data-topic="HIC1" role="listitem">
+          <div class="pub-year-badge" aria-hidden="true">2014</div>
+          <div class="pub-content">
+            <div class="pub-title">P53 Induction Accompanying G2/M Arrest upon Knockdown of Tumor Suppressor HIC1 in U87MG Glioma cells.</div>
+            <div class="pub-authors">Sanjay Kumar</div>
+            <div class="pub-journal"><strong>Mol Cell Biochem</strong> · 2014 · DOI: https://doi.org/10.1007/s11010-014-2137-9</div>
+          </div>
+          <a href="https://link.springer.com/article/10.1007/s11010-014-2137-9" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
+        </article>
+
+        <!-- Pub 6 -->
+        <article class="pub-item reveal delay-5" data-year="2014" data-topic="TSG HIC-1" role="listitem">
+          <div class="pub-year-badge" aria-hidden="true">2014</div>
+          <div class="pub-content">
+            <div class="pub-title">Molecular Cloning and Expression of High GC-rich Novel Tumor Suppressor Gene HIC-1.</div>
+            <div class="pub-authors">Sanjay Kumar.</div>
+            <div class="pub-journal"><strong>Molecular Biotechnology</strong> · 2014 · DOI: 10.1007/s12033-014-9783-8</div>
+          </div>
+          <a href="https://link.springer.com/article/10.1007/s12033-014-9783-8" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
+        </article>
+
+        <!-- Pub 7 -->
+        <article class="pub-item reveal delay-6" data-year="2015" data-topic="STAT6/KLF4" role="listitem">
+          <div class="pub-year-badge" aria-hidden="true">2015</div>
+          <div class="pub-content">
+            <div class="pub-title">MCPIP implements STAT6/KLF4 mediated IL-4 induction of macrophage polarization via its dual catalytic activities.</div>
+            <div class="pub-authors">Nidhi Kapoor, Jianli Niu, Yasser Saad, Sanjay Kumar, Tatiana Sirakova, Edilu Becerra, Xioman Li, and Pappachan E. Kolattukudy.</div>
+            <div class="pub-journal"><strong>The Journal of Immunology</strong> · 2015 · DOI: doi.org/10.4049/jimmunol.1402797</div>
+          </div>
+          <a href="https://doi.org/10.4049/jimmunol.1402797" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
+        </article>
+
+        <!-- Pub 8 -->
+        <article class="pub-item reveal delay-7" data-year="2014" data-topic="U87MG" role="listitem">
+          <div class="pub-year-badge" aria-hidden="true">2014</div>
+          <div class="pub-content">
+            <div class="pub-title">P53 Induction Accompanying G2/M Arrest upon Knockdown of Tumor Suppressor HIC1 in U87MG Glioma cells. (Alternative Dataset Focus)</div>
+            <div class="pub-authors">Sanjay Kumar</div>
+            <div class="pub-journal"><strong>Molecular and Cellular Biochemistry</strong> · 2014 · DOI: doi.org/10.1007/s11010-014-2137-9</div>
+          </div>
+          <a href="https://link.springer.com/article/10.1007/s11010-014-2137-9" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
+        </article>
+
+        <!-- Pub 9 -->
+        <article class="pub-item reveal delay-8" data-year="2007" data-topic="clinical therapeutics" role="listitem">
+          <div class="pub-year-badge" aria-hidden="true">2007</div>
+          <div class="pub-content">
+            <div class="pub-title">Mycoplasma pneumoniae and its role in asthma</div>
+            <div class="pub-authors">Nazima Nisar, Randeep Guleria, Sanjay Kumar, Tirlok Chand Chawla, Nihar Ranjan Biswas.</div>
+            <div class="pub-journal"><strong>Postgraduate Medical Journal</strong> · 2007 · DOI: doi.org/10.1136/pgmj.2006.049023</div>
+          </div>
+          <a href="https://doi.org/10.1136/pgmj.2006.049023" target="_blank" rel="noopener" class="pub-doi-link" aria-label="View DOI">🔗 DOI</a>
+        </article>
+
+      </div>
     </div>
   </section>
 
+  <!-- ══════════════════════════════
+       NEWS & EVENTS TIMELINE
+  ══════════════════════════════ -->
   <section class="section news-events" id="news" aria-labelledby="news-heading">
     <div class="container">
       <div class="section-header text-center">
         <div class="section-label" aria-hidden="true">Lab Activities</div>
         <h2 class="section-title reveal" id="news-heading">News &amp; Events</h2>
         <p class="section-subtitle reveal delay-1">
-          Milestones, conference presentations, awards, and outreach activities.
+          Milestones, conference presentations, awards, and outreach activities from the Stem Cell & Cancer Biology Laboratory.
         </p>
       </div>
 
@@ -491,7 +661,7 @@
           <div class="timeline-content">
             <div class="timeline-tag tag-milestone">🎉 Milestone</div>
             <div class="timeline-title">DST-SERB Research Grant Awarded</div>
-            <p class="timeline-desc"></p>
+            <p class="timeline-desc">Grant successfully provisioned to scale the lab's screening assets.</p>
           </div>
           <div class="timeline-node">
             <div class="timeline-dot" aria-hidden="true">🎉</div>
@@ -503,24 +673,28 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════
+       BLOG SECTION
+  ══════════════════════════════ -->
   <section class="section blog" id="blog" aria-labelledby="blog-heading">
     <div class="container">
       <div class="section-header text-center">
         <div class="section-label" aria-hidden="true">Lab Insights</div>
         <h2 class="section-title reveal" id="blog-heading">Blog &amp; Lab Updates</h2>
         <p class="section-subtitle reveal delay-1">
-          Thoughts on science, research journeys, student perspectives, and the latest in cancer biology.
+          Thoughts on science, research journeys, student perspectives, and the latest in cancer biology from our team.
         </p>
       </div>
 
       <div class="blog-grid" role="list" aria-label="Blog posts">
         
+        <!-- Blog 1 -->
         <article class="blog-card reveal delay-2" role="listitem">
           <div class="blog-card-image" aria-hidden="true">💊</div>
           <div class="blog-card-body">
             <div class="blog-card-tag">💊 Drug Research</div>
-            <h3 class="blog-card-title">Could a Blood Pressure Drug Fight Cancer?</h3>
-            <p class="blog-card-excerpt">The journey of discovering Tadalafil's unexpected anti-cancer properties.</p>
+            <h3 class="blog-card-title">Could a Blood Pressure Drug Fight Cancer? Our Tadalafil Story</h3>
+            <p class="blog-card-excerpt">The journey of discovering Tadalafil's unexpected anti-cancer properties — from initial observation to rigorous mechanistic validation in the lab.</p>
             <div class="blog-card-footer">
               <span class="blog-card-meta">Anshika Sethi · 2025</span>
               <span class="blog-read-more">Read more →</span>
@@ -528,12 +702,13 @@
           </div>
         </article>
 
+        <!-- Blog 2 -->
         <article class="blog-card reveal delay-3" role="listitem">
           <div class="blog-card-image" aria-hidden="true">🩸</div>
           <div class="blog-card-body">
             <div class="blog-card-tag">🩸 Liquid Biopsy</div>
-            <h3 class="blog-card-title">A Blood Test That Catches Cancer</h3>
-            <p class="blog-card-excerpt">Explaining how circulating tumor DNA could revolutionize early Breast cancer detection.</p>
+            <h3 class="blog-card-title">A Blood Test That Catches Cancer — The Promise of Liquid Biopsy</h3>
+            <p class="blog-card-excerpt">Explaining to a general audience how circulating tumor DNA extracted from a simple blood draw could revolutionize early Breast cancer detection and monitoring.</p>
             <div class="blog-card-footer">
               <span class="blog-card-meta">Namrta Sharma · 2024</span>
               <span class="blog-read-more">Read more →</span>
@@ -541,12 +716,13 @@
           </div>
         </article>
 
+        <!-- Blog 3 -->
         <article class="blog-card reveal delay-4" role="listitem">
           <div class="blog-card-image" aria-hidden="true">🎓</div>
           <div class="blog-card-body">
             <div class="blog-card-tag">🎓 Student Life</div>
-            <h3 class="blog-card-title">Life as a PhD Scholar</h3>
-            <p class="blog-card-excerpt">A candid look at the daily reality of conducting cutting-edge research.</p>
+            <h3 class="blog-card-title">Life as a PhD Scholar in a Stem cell & Cancer Research Lab at AIIMS</h3>
+            <p class="blog-card-excerpt">A candid look at the daily reality of conducting cutting-edge research — the failures, the breakthroughs, the mentorship, and the camaraderie in our lab.</p>
             <div class="blog-card-footer">
               <span class="blog-card-meta">Varsha Yadav · Aug 2024</span>
               <span class="blog-read-more">Read more →</span>
@@ -554,12 +730,13 @@
           </div>
         </article>
 
+        <!-- Blog 4 -->
         <article class="blog-card reveal delay-5" role="listitem">
           <div class="blog-card-image" aria-hidden="true">💻</div>
           <div class="blog-card-body">
             <div class="blog-card-tag">💻 Bioinformatics</div>
             <h3 class="blog-card-title">From Raw Reads to Biological Insights</h3>
-            <p class="blog-card-excerpt">A walkthrough of the computational workflow we use to process ChIP-seq and RNA-seq data.</p>
+            <p class="blog-card-excerpt">A walkthrough of the computational workflow we use to process ChIP-seq and RNA-seq data — tools, challenges, and lessons learned along the way.</p>
             <div class="blog-card-footer">
               <span class="blog-card-meta">Haris Bashir · June 2026</span>
               <span class="blog-read-more">Read more →</span>
@@ -571,30 +748,47 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════
+       RESOURCES SECTION
+  ══════════════════════════════ -->
   <section class="section resources" id="resources" aria-labelledby="resources-heading">
     <div class="container">
       <div class="section-header text-center">
         <div class="section-label" aria-hidden="true">Downloads</div>
         <h2 class="section-title reveal" id="resources-heading">Lab Resources</h2>
+        <p class="section-subtitle reveal delay-1">
+          Download CVs, brochures, and access lab protocols and educational materials.
+        </p>
       </div>
 
-      <div class="resources-grid" role="list">
+      <div class="resources-grid" role="list" aria-label="Downloadable lab resources">
         <div class="resource-card reveal delay-1" role="listitem">
           <div class="resource-icon" aria-hidden="true">📄</div>
           <div class="resource-title">PI Curriculum Vitae</div>
-          <p class="resource-desc">Full academic CV of Dr. Sanjay Kumar.</p>
-          <a href="#" class="btn btn-secondary" download>⬇ Download CV</a>
+          <p class="resource-desc">Full academic CV of Dr. Sanjay Kumar, including publications, grants, and academic service.</p>
+          <a href="#" class="btn btn-secondary" download aria-label="Download PI CV">⬇ Download CV</a>
         </div>
+
         <div class="resource-card reveal delay-2" role="listitem">
           <div class="resource-icon" aria-hidden="true">🗂️</div>
           <div class="resource-title">Lab Brochure</div>
-          <p class="resource-desc">Overview of the Stem Cell Therapy Lab's research focus.</p>
-          <a href="#" class="btn btn-secondary" download>⬇ Download Brochure</a>
+          <p class="resource-desc">Overview of the Stem Cell Therapy & Cancer Biology Lab's research focus, ongoing projects, team, and facilities.</p>
+          <a href="#" class="btn btn-secondary" download aria-label="Download Lab Brochure">⬇ Download Brochure</a>
+        </div>
+
+        <div class="resource-card reveal delay-3" role="listitem">
+          <div class="resource-icon" aria-hidden="true">🧪</div>
+          <div class="resource-title">Lab SOPs</div>
+          <p class="resource-desc">Standard Operating Procedures for common lab techniques: miRNA extraction, qPCR, Western Blot.</p>
+          <a href="#" class="btn btn-secondary" aria-label="Access Lab SOPs">📂 Access SOPs</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ══════════════════════════════
+       CONTACT SECTION
+  ══════════════════════════════ -->
   <section class="section contact" id="contact" aria-labelledby="contact-heading">
     <div class="container">
       <div class="section-header">
@@ -603,50 +797,61 @@
       </div>
 
       <div class="contact-grid">
+        <!-- Contact Info -->
         <div class="contact-info reveal reveal-left">
           <div class="contact-info-items">
             <div class="contact-info-item">
               <div class="contact-icon" aria-hidden="true">📍</div>
               <div>
                 <h4>Address</h4>
-                <p>Department of Biochemistry, AIIMS Bathinda<br />Punjab — 151001<br />India</p>
+                <p>Department of Biochemistry, AIIMS Bathinda<br />Jodhpur Romana, Bathinda, Punjab — 151001<br />India</p>
               </div>
             </div>
+
             <div class="contact-info-item">
               <div class="contact-icon" aria-hidden="true">📧</div>
               <div>
                 <h4>Email</h4>
                 <p>
-                  <a href="mailto:sanjay.kumar@aiimsbathinda.edu.in">sanjay.kumar@aiimsbathinda.edu.in</a>
+                  <a href="mailto:sanjay.kumar@aiimsbathinda.edu.in" style="color: var(--accent);">sanjay.kumar@aiimsbathinda.edu.in</a>
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="contact-form reveal reveal-right" role="region">
-          <h3>Send a Message</h3>
-          <form id="contact-form" novalidate>
+        <!-- Contact Form -->
+        <div class="contact-form reveal reveal-right" role="region" aria-labelledby="contact-form-heading">
+          <h3 id="contact-form-heading">Send a Message</h3>
+          <form id="contact-form" novalidate aria-label="Contact form">
             <div class="form-group">
               <label class="form-label" for="fname">First Name *</label>
-              <input class="form-input" type="text" id="fname" required />
+              <input class="form-input" type="text" id="fname" required placeholder="Dr. Jane" />
             </div>
+
             <div class="form-group">
               <label class="form-label" for="email">Email Address *</label>
-              <input class="form-input" type="email" id="email" required />
+              <input class="form-input" type="email" id="email" required placeholder="jane.smith@university.edu" />
             </div>
+
             <div class="form-group">
               <label class="form-label" for="message">Message *</label>
-              <textarea class="form-textarea" id="message" required rows="5"></textarea>
+              <textarea class="form-textarea" id="message" required placeholder="Please describe your inquiry in detail…" rows="5"></textarea>
             </div>
-            <button type="submit" class="form-submit">📨 Send Message</button>
+
+            <button type="submit" class="form-submit" id="form-submit-btn">
+              📨 Send Message
+            </button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer" role="contentinfo">
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer class="footer" role="contentinfo" aria-label="Footer">
     <div class="container">
       <div class="footer-bottom">
         <p>© 2024 Stem Cell Therapy & Cancer Biology Lab, AIIMS Bathinda. All rights reserved. | Dr. Sanjay Kumar</p>
@@ -655,6 +860,7 @@
     </div>
   </footer>
 
+  <!-- JavaScript Files -->
   <script src="js/animations.js"></script>
   <script src="js/publications.js"></script>
   <script src="js/main.js"></script>
